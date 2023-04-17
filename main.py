@@ -95,6 +95,7 @@ def manage_goods_post(data: dict[str, ItemWS2],
 ):
     url = WS2_URL + 'manage'
     data_json = json.dumps({k: dict(v) for k, v in data.items()})
+    print(data_json)
     try:
         req = requests.post(url=url, data=data_json)
     except requests.exceptions.ConnectionError as e:

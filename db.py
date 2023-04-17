@@ -16,6 +16,16 @@ class MyDatabase:
         self.cur.execute(query)
         return self.cur.fetchall()
 
-    def close(self):
+    def insert(self, query):
+        self.cur.execute(query)
+        self.conn.commit()
+
+    def delete(self, query):
+        self.insert(query)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
         self.cur.close()
         self.conn.close()
